@@ -33,11 +33,14 @@ class _AddCategoryDialogState extends State<AddCategoryDialog> {
         TextButton(
           onPressed: () {
             var newCategory = ExpenseCategory(
-              id: DateTime.now().toString(), name: _controller.text, isDefault: false
+              id: DateTime.now().toString(), 
+              name: _controller.text, 
+              isDefault: false
             );
             widget.onAdd(newCategory);
             Provider.of<ExpenseProvider>(context, listen: false).addCategory(newCategory);
             _controller.clear();
+
             Navigator.of(context).pop();
           }, 
           child: Text('Add')

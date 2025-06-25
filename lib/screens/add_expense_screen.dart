@@ -36,12 +36,14 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
       text: widget.initialExpense?.note ?? ''
     );
     _selectedDate = widget.initialExpense?.date ?? DateTime.now();
-    _selectedCategoryId = widget.initialExpense?.categoryId ?? '';
+    _selectedCategoryId = widget.initialExpense?.categoryId;
     _selectedTagId = widget.initialExpense?.tag;
   }
 
   @override
   Widget build(BuildContext context) {
+    final expenseProvider = Provider.of<ExpenseProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -53,6 +55,20 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
+            buildTextField(_amountController, 'Amount', TextInputType.numberWithOptions(decimal: true)),
+            buildTextField(_payeeController, 'Payee', TextInputType.text),
+            buildTextField(_noteController, 'note', TextInputType.text),
+            buildDateField(_selectedDate),
+            Padding(
+              padding: const EdgeInsets.only(
+                  bottom: 8.0), // Adjust the padding as needed
+              child: buildTagDropdown(expenseProvider),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  bottom: 8.0), // Adjust the padding as needed
+              child: buildCategoryDropdown(expenseProvider),
+            ),
           ],
         ),
       ),
@@ -140,7 +156,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 _selectedCategoryId = newCategory.id;
                 prorvider.addCategory(newCategory);
               });
-            },),
+            }),
           );
         } else {
           setState(() {
@@ -149,14 +165,15 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         }
       },
       items: prorvider.categories.map<DropdownMenuItem<String>>((category) {
-        return DropdownMenuItem(
+        return DropdownMenuItem<String>(
           value: category.id,
           child: Text(category.name)
         );
-      },).toList()..add(DropdownMenuItem(
-        value: 'New',
-        child: Text("Add New Category")
-      )),
+      }).toList()
+        ..add(DropdownMenuItem(
+          value: 'New',
+          child: Text("Add New Category")
+        )),
       decoration: InputDecoration(
         labelText: 'Category',
         border: OutlineInputBorder()
@@ -176,7 +193,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 _selectedTagId = newTag.id;
                 provider.addTag(newTag);
               });
-            },),
+            }),
           );
         } else {
           setState(() {
@@ -184,15 +201,16 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
           });
         }
       },
-      items: provider.tags.map<DropdownMenuItem<String>>((category) {
-        return DropdownMenuItem(
-          value: category.id,
-          child: Text(category.name)
+      items: provider.tags.map<DropdownMenuItem<String>>((tag) {
+        return DropdownMenuItem<String>(
+          value: tag.id,
+          child: Text(tag.name)
         );
-      },).toList()..add(DropdownMenuItem(
-        value: 'New',
-        child: Text('Add New Tag')
-      )),
+      }).toList()
+        ..add(DropdownMenuItem(
+          value: 'New',
+          child: Text('Add New Tag')
+        )),
       decoration: InputDecoration(
         labelText: 'Tag',
         border: OutlineInputBorder()

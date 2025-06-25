@@ -96,6 +96,7 @@ class ExpenseProvider with ChangeNotifier {
 
   void addTag(Tag tag) {
     if (!_tags.any((t) => t.name == tag.name)) {
+      _tags.add(tag);
       notifyListeners();
     }
   }

@@ -32,13 +32,17 @@ class _AddTagDialogState extends State<AddTagDialog> {
         ),
         TextButton(
           onPressed: () {
-            var newTag = Tag(id: DateTime.now().toString(), name: _controller.text);
+            var newTag = Tag(
+              id: DateTime.now().toString(), 
+              name: _controller.text
+            );
             widget.onAdd(newTag);
             Provider.of<ExpenseProvider>(context, listen: false).addTag(newTag);
             _controller.clear();
 
             Navigator.of(context).pop();
-          }, child: Text('Add')
+          },
+          child: Text('Add')
         )
       ],
     );
