@@ -11,7 +11,7 @@ class CategoryManagementScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Manage Categories'),
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Colors.green,
         foregroundColor: Colors.white,
       ),
       body: Consumer<ExpenseProvider>(

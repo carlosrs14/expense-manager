@@ -47,7 +47,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         title: Text(
           widget.initialExpense == null? 'Add Expense': 'Edit Expense',
         ),
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -60,7 +60,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         padding: EdgeInsets.all(8),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.greenAccent,
+            backgroundColor: Colors.green,
             foregroundColor: Colors.white,
             minimumSize: Size(double.infinity, 50)
 

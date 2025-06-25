@@ -11,7 +11,7 @@ class TagManagementScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Manage Tags'),
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Colors.green,
         foregroundColor: Colors.white,
       ),
       body: Consumer<ExpenseProvider>(

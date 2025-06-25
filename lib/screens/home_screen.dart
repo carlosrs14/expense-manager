@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 child: Icon(Icons.delete, color: Colors.white,),
               ),
               child: Card(
-                color: Colors.greenAccent,
+                color: Colors.green,
                 margin: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                 child: ListTile(
                   title: Text('${expense.payee} - \$${expense.amount.toStringAsFixed(2)}'),
