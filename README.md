@@ -46,3 +46,6 @@ Una aplicación de gestión de gastos desarrollada en Flutter como proyecto de p
 ### Tab bar
 
 ![Tab bar](assets/screens/left_bar.jpg)
+
+
+La paleta de colores no es lo mío...
