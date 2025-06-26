@@ -126,7 +126,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
 
   Widget buildDateField(DateTime selectedDate) {
     return ListTile(
-      title: Text("Date: ${DateFormat('yyyy-mm-dd').format(selectedDate)}"),
+      title: Text("Date: ${DateFormat('yyyy-MM-dd').format(selectedDate)}"),
       trailing: Icon(Icons.calendar_today),
       onTap: () async {
         final DateTime? picked = await showDatePicker(

@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white70,
           tabs: [
-            Tab(text: 'Bay Date',),
+            Tab(text: 'Bay Added Date',),
             Tab(text: 'By Category',)
           ]
         )
@@ -37,10 +37,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.green),
-              child: Text('Menu', 
-              style: TextStyle(color: Colors.white, fontSize: 24),)
+            SizedBox(
+              height: 120,
+              child: DrawerHeader(
+                decoration: BoxDecoration(color: Colors.green,),
+                padding: EdgeInsets.all(20),
+                child: Text('Menu', 
+                  style: TextStyle(color: Colors.white, fontSize: 24,),
+                ),
+              ),
             ),
             ListTile(
               leading: Icon(Icons.category, color: Colors.green,),
@@ -104,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           itemCount: provider.expenses.length,
           itemBuilder: (context, index) {
             final expense = provider.expenses[index];
-            String formattedDate = DateFormat('yyyy-mm-dd').format(expense.date);
+            String formattedDate = DateFormat('yyyy-MM-dd').format(expense.date);
             return Dismissible(
               key: Key(expense.id), 
               direction: DismissDirection.endToStart,
@@ -143,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             ),
           );
         }
-        var grouped = groupBy(provider.expenses, (ex) => ex.categoryId);
+        var grouped = groupBy(provider.expenses, (e) => e.categoryId);
         return ListView(
           children: grouped.entries.map((e) {
             String categoryName = getCategoryNameById(context, e.key);
@@ -163,19 +168,21 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   ),
                 ),
                 ListView.builder(
-                  itemCount: provider.expenses.length,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: e.value.length,
                   itemBuilder: (context, index) {
                     final expense = e.value[index];
                     return ListTile(
-                      leading: Icon(Icons.monetization_on, color: Colors.green,),
+                      leading: Icon(Icons.monetization_on, color: Colors.green),
                       title: Text('${expense.payee} - \$${expense.amount.toStringAsFixed(2)}'),
-                      subtitle: Text(DateFormat('yyyy-mm-dd').format(expense.date)),
+                      subtitle: Text(DateFormat('yyyy-MM-dd').format(expense.date)),
                     );
                   },
                 ),
               ],
             );
-          },).toList(),
+          }).toList(),
         );
       },
     );

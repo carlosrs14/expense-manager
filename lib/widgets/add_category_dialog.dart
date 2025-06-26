@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class AddCategoryDialog extends StatefulWidget {
   final Function(ExpenseCategory) onAdd;
 
-  const AddCategoryDialog({required this.onAdd});
+  const AddCategoryDialog({super.key, required this.onAdd});
 
   @override
   State<AddCategoryDialog> createState() => _AddCategoryDialogState();
