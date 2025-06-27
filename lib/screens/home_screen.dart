@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white70,
           tabs: [
-            Tab(text: 'Bay Added Date',),
+            Tab(text: 'By Added Date',),
             Tab(text: 'By Category',)
           ]
         )
